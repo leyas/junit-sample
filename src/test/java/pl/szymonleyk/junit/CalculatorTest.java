@@ -7,6 +7,8 @@ import static pl.szymonleyk.junit.Calculator.add;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class CalculatorTest {
 
@@ -28,7 +30,13 @@ public class CalculatorTest {
 	
 	@Test
 	@DisplayName("33+2 != 2")
-	void addTest() {
+	void addTest33Plus2() {
 		assertNotEquals(2, add(33, 2));
+	}
+	
+	@ParameterizedTest(name = "{0}+{1}={2}")
+	@CsvSource({"1, 0, 1", "23,32,55", "0,22,22"})
+	void addEqualsTest(int first, int second, int expected) {
+		assertEquals(expected, add(first, second));
 	}
 }
