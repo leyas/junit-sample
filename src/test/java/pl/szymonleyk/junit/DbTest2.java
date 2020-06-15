@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DbTest2 {
@@ -18,6 +20,11 @@ public class DbTest2 {
 		Db.add("Kazik");
 	}
 	
+	@BeforeEach
+	void each() {
+		System.out.println("\n----------- test -----------");
+	}
+	
 	@Test
 	void exists() {
 		assertTrue(Db.exists("Karol"));
@@ -28,6 +35,10 @@ public class DbTest2 {
 		assertFalse(Db.exists("Zosia"));
 	}
 	
+	@AfterEach
+	void afterEach() {
+		System.out.println("---------------------------\n");
+	}
 	
 	@AfterAll
 	static void after() {
